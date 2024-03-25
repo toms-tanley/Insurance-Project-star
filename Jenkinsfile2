@@ -41,5 +41,11 @@
            sh 'docker push thomasdevops003/insureme_project123'
                     }
              }
+    stage('Deploy with Ansible') {
+            steps {
+                echo 'Deploying with Ansible...'
+                sh 'ansible-playbook $ansible-playbook.yml'
+            }
+        }
     }
     

@@ -4,7 +4,7 @@
     environment {
         DOCKER_IMAGE = 'insureme_project123'
         ANSIBLE_PLAYBOOK = 'ansible-playbook.yml'
-        SELENIUM_TESTS = 'selenium_tests.py'
+        SELENIUM_TESTS = 'selenium-insure-me-runnable.jar'
     }
 
     tools {

@@ -3,7 +3,7 @@
 
     environment {
         DOCKER_IMAGE = 'insureme_project123'
-        ANSIBLE_PLAYBOOK = 'ansible-playbook'
+        ANSIBLE_PLAYBOOK = 'ansible-playbook.yml'
         SELENIUM_TESTS = 'selenium_tests.py'
     }
 

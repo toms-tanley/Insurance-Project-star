@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/toms-tanley/Insurance-Project-star.git'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                sh 'mvn clean package' // Build the application
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                sh 'mvn test' // Run tests
+            }
+        }
+        
+        stage('Deploy to Test') {
+            steps {
+                sh 'docker build -t insureme_project123:latest' // Build Docker image
+                sh 'docker run -d -p 8080:8080 insureme_project123:latest' // Run Docker container
+            }
+        }
+        
+    }
+}
+
+
+ ⁠

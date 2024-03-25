@@ -37,8 +37,8 @@
     stage('Docker Login') {
       steps {
         echo 'Docker Login'
-        withCredentials([usernamePassword(credentialsId: ’Dockerlogin’, usernameVariable: ‘thomasdevops003’, passwordVariable: ‘THOMASFRANKLINEDISON111222’)]) {
-        sh 'docker login -u ${env.thomasdevops003} -p ${THOMASFRANKLINEDISON@111222}'
+        withCredentials([usernamePassword(credentialsId: ’Dockerlogin’, usernameVariable: ‘thomasdevops003’, passwordVariable: ‘THOMASFRANKLINEDISON%40111222’)]) {
+        sh 'docker login -u ${env.thomasdevops003} -p ${THOMASFRANKLINEDISON%40111222}'
             }
     }
     stage('Push Docker Image') {

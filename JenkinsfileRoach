@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy to Test') {
             steps {
-                sh 'docker run -d -p 8083:80 insureme_project123:latest' // Run Docker container
+                sh 'docker run -d -p 8084:80 insureme_project123:latest' // Run Docker container
             }
         }
 
@@ -51,7 +51,7 @@ pipeline {
 
         stage('Ansible Config and Deployment') {
             steps {
-                ansiblePlaybook credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible.yml', vaultTmpPath: ''
+                ansiblePlaybook credentialsId: 'ansiblefile-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansible.yml', vaultTmpPath: ''
             }
         }
     }

@@ -1,1 +1,20 @@
-name:cDocker 
+- name : Docker configure in EC2 Instances
+  hosts : all
+  become: true
+  connection : ssh
+  tasks : 
+  - name: updating the New Ec2 Machine
+    command : sudo apt-get update
+
+  - name : Install Docker
+    command : sudo apt-get install -y docker.io
+    become : yes
+    become_user : root
+
+  - name : Start Docker Service
+    command : sudo systemctl start docker
+    become : yes
+    become_user : root
+
+  - name: Deploy the Image and Run as Container
+    command: docker run -itd -p 8084:8081 thomasdevops003/insureme_project123:v1

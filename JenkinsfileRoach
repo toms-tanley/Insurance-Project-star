@@ -48,5 +48,11 @@ pipeline {
                 sh 'docker push thomasdevops003/insureme_project123'
             }
         }
+
+        stage('Ansible Config and Deployment') {
+            steps {
+                ansiblePlaybook credentialsId: 'ansible-ssh', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'ansiblefile', vaultTmpPath: ''
+            }
+        }
     }
 }

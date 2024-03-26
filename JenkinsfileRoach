@@ -23,7 +23,7 @@ pipeline {
         stage('Deploy to Test') {
             steps {
                 sh 'docker build -t insureme_project123:latest .' // Build Docker image
-                sh 'docker run -d -p 8080:8080 insureme_project123:latest' // Run Docker container
+                sh 'docker run -d -p 8080:80 insureme_project123:latest' // Run Docker container
             }
         }
         

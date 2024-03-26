@@ -26,6 +26,7 @@ pipeline {
                 sh 'docker run -d -p 8081:80 insureme_project123:latest' // Run Docker container
             }
         }
+
         stage('Docker Login') {
             steps {
                 echo 'Docker Login'
@@ -33,6 +34,7 @@ pipeline {
                 sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"    
             }
         }
+
         stage('Push Docker Image') {
             steps {
                 echo 'Push a Docker Image'

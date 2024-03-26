@@ -33,6 +33,12 @@ pipeline {
                 sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"    
             }
         }
+        stage('Push Docker Image') {
+            steps {
+                echo 'Push a Docker Image'
+                sh 'docker push thomasdevops003/insureme_project123:latest'
+             }
+         }
     }
 }
 

@@ -37,8 +37,8 @@ pipeline {
             steps {
                 echo 'Push a Docker Image'
                 sh 'docker push thomasdevops003/insureme_project123:latest'
-             }
-         }
+                  }
+            }
+        }
     }
-}
 }

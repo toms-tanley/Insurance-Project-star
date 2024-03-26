@@ -44,7 +44,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 echo 'Push a Docker Image'
-                sh 'docker push thomasdevops003/insureme_project123:latest'
+                sh 'docker tag insureme_project123 thomasdevops003/insureme_project123'
+                sh 'docker push thomasdevops003/insureme_project123'
             }
         }
     }

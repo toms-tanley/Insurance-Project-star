@@ -1,46 +1,51 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
                 git 'https://github.com/toms-tanley/Insurance-Project-star.git'
             }
         }
-        
+
         stage('Build') {
             steps {
                 sh 'mvn clean package' // Build the application
             }
         }
-        
+
         stage('Test') {
             steps {
                 sh 'mvn test' // Run tests
             }
         }
-        
-        stage('Deploy to Test') {
+
+        stage('Docker Build') {
             steps {
                 sh 'docker build -t insureme_project123:latest .' // Build Docker image
+            }
+        }
+
+        stage('Deploy to Test') {
+            steps {
                 sh 'docker run -d -p 8081:80 insureme_project123:latest' // Run Docker container
-             }
+            }
         }
 
         stage('Docker Login') {
             steps {
                 echo 'Docker Login'
                 withCredentials([usernamePassword(credentialsId: 'Dockerlogin', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
-                  }
-             }
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                }
+            }
         }
 
         stage('Push Docker Image') {
             steps {
                 echo 'Push a Docker Image'
                 sh 'docker push thomasdevops003/insureme_project123:latest'
-                  }
             }
         }
     }
+}

@@ -26,7 +26,13 @@ pipeline {
                 sh 'docker run -d -p 8081:80 insureme_project123:latest' // Run Docker container
             }
         }
-        
+        stage('Docker Login') {
+            steps {
+                echo 'Docker Login'
+                withCredentials([usernamePassword(credentialsId: 'Dockerlogin', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"    
+            }
+        }
     }
 }
 

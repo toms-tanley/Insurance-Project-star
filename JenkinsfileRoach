@@ -28,7 +28,7 @@ pipeline {
 
         stage('Deploy to Test') {
             steps {
-                sh 'docker run -d -p 8087:80 insureme_project123:latest' // Run Docker container
+                sh 'docker run -d -p 8088:80 insureme_project123:latest' // Run Docker container
             }
         }
 

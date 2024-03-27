@@ -18,7 +18,7 @@
         state: started
       become: true
 
-    - name: Stopping the running containers
+    - name: Stopping and removing the running containers
       shell: docker rm -f $(docker ps -a -q)
 
     - name: Cleaning up the images

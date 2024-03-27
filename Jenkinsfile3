@@ -13,5 +13,13 @@ pipeline {
                 sh 'mvn clean package' // Build the application
             }
         }
+
+        stage('Code Test') {
+            steps {
+                script {
+                    sh 'mvn test'
+                }
+            }
+        }
     }
 }

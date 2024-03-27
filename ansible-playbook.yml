@@ -16,12 +16,11 @@
       become: yes
       #become_user: root
 
+    - name: Cleaning the docker
+      command: docker system prune -af
+
     - name: Pull the Image
       command: docker pull thomasdevops003/insureme_project123:latest
 
     - name: Deploy the Image and Run as Container
       command: docker run -d -p 8081:8081 thomasdevops003/insureme_project123:latest
-
-
-
-      

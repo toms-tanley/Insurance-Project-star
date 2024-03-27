@@ -17,7 +17,7 @@
       #become_user: root
 
     - name: Cleaning the docker
-      command: sudo docker system prune -af
+      command: docker rm -f $(docker ps -a -q) && docker rmi -f $(docker images -aq)
 
     - name: Pull the Image
       command: docker pull thomasdevops003/insureme_project123:latest

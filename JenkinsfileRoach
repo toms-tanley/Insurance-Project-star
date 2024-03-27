@@ -24,7 +24,7 @@ pipeline {
                    if (pid) {
                          // Stop the Java application if it's running
                          sh "kill $pid"
-                 }
+                   }
                 
             }
         }

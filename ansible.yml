@@ -17,4 +17,4 @@
       become_user: root
 
     - name: Deploy the Image and Run as Container
-      command: docker run -itd -p 8086:80 thomasdevops003/insureme_project123:v1
+      command: docker run -itd -p 8087:8082 thomasdevops003/insureme_project123:v1

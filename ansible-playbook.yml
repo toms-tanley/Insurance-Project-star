@@ -19,7 +19,7 @@
     - name: Stopping the running container
       command: docker rm -f $(docker ps -a -q)
 
-     - name: Cleaning up the Image
+    - name: Cleaning up the Image
       command: docker rmi -f $(docker images -aq)
 
     - name: Pull the Image

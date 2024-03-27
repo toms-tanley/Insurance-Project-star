@@ -31,4 +31,4 @@
       command: docker run -itd -p 8081:8081 thomasdevops003/insureme_project123:latest
 
     - name: Back to Jenkins Job
-      command: echo "i am done"
+      command: exit 0

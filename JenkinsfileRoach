@@ -17,6 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'mvn test' // Run tests
+                sh 'fuser -k 8081/tcp'
             }
         }
 

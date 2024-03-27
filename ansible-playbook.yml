@@ -17,15 +17,11 @@
       #become_user: root
       
     - name: Stopping the running container
-      command: docker rm -f $(docker ps -a -q)
-      args:
-        executable: /bin/bash
+      shell: docker rm -f $(docker ps -a -q)
 
 
     - name: Cleaning up the Image
-      command: docker rmi -f $(docker images -a -q)
-      args:
-        executable: /bin/bash
+      shell: docker rmi -f $(docker images -a -q)
 
     - name: Pull the Image
       command: docker pull thomasdevops003/insureme_project123:latest

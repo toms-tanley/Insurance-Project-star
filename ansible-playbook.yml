@@ -23,7 +23,7 @@
 
 
     - name: Cleaning up the Image
-      command: docker rmi -f $(docker images -aq)
+      command: docker rmi -f $(docker images -a -q)
       args:
         executable: /bin/bash
 

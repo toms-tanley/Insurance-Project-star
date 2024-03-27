@@ -30,6 +30,7 @@ pipeline {
             steps {
                 sh 'docker run -d -p 8081:8081 insureme_project123:latest' // Run Docker container
                 echo "Application is succesfully running"
+                sh 'docker rm -f $(docker ps -a -q)'
             }
         }
 
@@ -47,6 +48,7 @@ pipeline {
                 echo 'Push a Docker Image'
                 sh 'docker tag insureme_project123 thomasdevops003/insureme_project123'
                 sh 'docker push thomasdevops003/insureme_project123'
+                sh 'docker rmi -f $(docker images -aq)'
             }
         }
 

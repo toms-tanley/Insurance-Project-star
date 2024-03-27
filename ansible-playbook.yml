@@ -15,12 +15,17 @@
       command: sudo systemctl start docker
       become: yes
       #become_user: root
-
+      
     - name: Stopping the running container
       command: docker rm -f $(docker ps -a -q)
+      args:
+        executable: /bin/bash
+
 
     - name: Cleaning up the Image
       command: docker rmi -f $(docker images -aq)
+      args:
+        executable: /bin/bash
 
     - name: Pull the Image
       command: docker pull thomasdevops003/insureme_project123:latest

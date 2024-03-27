@@ -29,6 +29,3 @@
 
     - name: Deploy the Docker Image and Run as Container
       command: docker run -itd -p 8081:8081 thomasdevops003/insureme_project123:latest
-
-    - name: Back to Jenkins Job
-      command: exit 0

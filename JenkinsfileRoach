@@ -16,8 +16,16 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'mvn test' // Run tests
-                sh 'sudo fuser -k 8081/tcp'
+                script {
+                   sh 'mvn test &' // Run tests in the background
+                   sleep 30 // Give some time for the Java application to start
+                   // Find the process ID of the Java application
+                   def pid = sh(script: "lsof -ti :8081", returnStdout: true).trim()
+                   if (pid) {
+                         // Stop the Java application if it's running
+                         sh "kill $pid"
+                 }
+                
             }
         }
 

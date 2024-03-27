@@ -1,52 +1,16 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'M2_HOME'
-    }
-
     stages {
-        stage('Checkout') {
+        stage('Git Checkout') {
             steps {
-                echo 'Checkout the source code from GitHub'
-                git branch: 'master', url: 'https://github.com/toms-tanley/Insurance-Project-star.git'
+                git 'https://github.com/toms-tanley/Insurance-Project-star.git'
             }
         }
 
-        stage('Package') {
+        stage('Code Build') {
             steps {
-                echo 'Generate a jar file package using Maven'
-                sh 'mvn clean package'
-            }
-        }
-
-        stage('Publish TestNG Report') {
-            steps {
-                echo 'Generate a TestNG report'
-                publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/InsureMe-Project/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
-            }
-        }
-
-        stage('Create Docker Image') {
-            steps {
-                echo 'Create a Docker Image'
-                sh 'docker build -t thomasdevops003/insureme_project123 .'
-            }
-        }
-
-        stage('Docker Login') {
-            steps {
-                echo 'Docker Login'
-                withCredentials([usernamePassword(credentialsId: 'Dockerlogin', usernameVariable: 'thomasdevops003’, passwordVariable: 'THOMASFRANKLINEDISON@111222')]) {
-                    sh 'docker login -u $thomasdevops003-p $THOMASFRANKLINEDISON@111222'
-                }
-            }
-        }
-
-        stage('Push Docker Image') {
-            steps {
-                echo 'Push a Docker Image'
-                sh 'docker push thomasdevops003/insureme_project123'
+                sh 'mvn clean package' // Build the application
             }
         }
     }

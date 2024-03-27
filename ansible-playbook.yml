@@ -20,4 +20,4 @@
       command: docker pull thomasdevops003/insureme_project123:v1
 
     - name: Deploy the Image and Run as Container
-      command: docker run -itd -p 8081:8080 thomasdevops003/insureme_project123:v1
+      command: docker run -itd -p 8082:8081 thomasdevops003/insureme_project123:v1

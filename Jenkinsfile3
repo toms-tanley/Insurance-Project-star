@@ -44,5 +44,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Push Docker Image to Hub') {
+            steps {
+                echo 'Push a Docker Image'
+                sh 'docker tag insureme_project123 thomasdevops03/insureme_project123'
+                sh 'docker push thomasdevops003/insureme_project123'
+                sh 'docker rmi -f $(docker images -aq)' // Cleaning up the Image
+            }
+        }
     }
 }

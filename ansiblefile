@@ -1,20 +1,32 @@
-- name : Docker configure in EC2 Instances
-  hosts : all
+
+- name: Docker configure in EC2 Instances
+  hosts: all
   become: true
-  connection : ssh
-  tasks : 
-  - name: updating the New Ec2 Machine
-    command : sudo apt-get update
+  tasks:
+    - name: updating the New EC2 Machine
+      apt:
+        update_cache: yes
 
-  - name : Install Docker
-    command : sudo apt-get install -y docker.io
-    become : yes
-    become_user : root
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+      become: true
 
-  - name : Start Docker Service
-    command : sudo systemctl start docker
-    become : yes
-    become_user : root
+    - name: Start Docker Service
+      systemd:
+        name: docker
+        state: started
+      become: true
 
-  - name: Deploy the Image and Run as Container
-    command: docker run -itd -p 8082:80 thomasdevops003/insureme_project123:v1
+    - name: Stopping and removing the running containers
+      shell: docker rm -f $(docker ps -a -q)
+
+    - name: Cleaning up the images
+      shell: docker rmi -f $(docker images -a -q)
+
+    - name: Pull the Docker Image
+      command: docker pull thomasdevops003/insureme_project123:latest
+
+    - name: Deploy the Docker Image and Run as Container
+      command: docker run -itd -p 8081:8081 thomasdevops003/insureme_project123:latest

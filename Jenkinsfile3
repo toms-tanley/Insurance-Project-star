@@ -49,7 +49,7 @@ pipeline {
         stage('Push Docker Image to Hub') {
             steps {
                 echo 'Push a Docker Image'
-                sh 'docker tag insureme_project123 thomasdevops003/insurance123'
+                sh 'docker tag insurance123 thomasdevops003/insurance123'
                 sh 'docker push thomasdevops003/insurance123'
                 sh 'docker rmi -f $(docker images -aq)' // Cleaning up the Image
             }

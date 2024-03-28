@@ -26,7 +26,7 @@
       shell: docker rmi -f $(docker images -a -q)
 
     - name: Pull the Docker Image
-      command: docker pull thomasdevops003/insureme_project123:latest
+      command: docker pull thomasdevops003/insurance123:latest
 
     - name: Deploy the Docker Image and Run as Container
-      command: docker run -itd -p 8081:8081 thomasdevops003/insureme_project123:latest
+      command: docker run -itd -p 8081:8081 thomasdevops003/insurance123:latest

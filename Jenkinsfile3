@@ -35,5 +35,14 @@ pipeline {
                 sh 'docker rm -f $(docker ps -a -q)' // Stopping the Running Docker container
             }
         }
+
+        stage('Docker Login') {
+            steps {
+                echo 'Docker Login'
+                withCredentials([usernamePassword(credentialsId: 'Dockerlogin', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                }
+            }
+        }
     }
 }
